@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1586253580 source:d:\c_code\flight\main.c
+	<stdio.h>
+	<stdlib.h>
+

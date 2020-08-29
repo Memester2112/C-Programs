@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1586239002 source:d:\c_code\priorityqueue\main.c
+	<stdio.h>
+	<stdlib.h>
+

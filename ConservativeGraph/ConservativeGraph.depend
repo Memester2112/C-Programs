@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1584808494 source:d:\c_code\conservativegraph\main.c
+	<stdio.h>
+	<stdlib.h>
+

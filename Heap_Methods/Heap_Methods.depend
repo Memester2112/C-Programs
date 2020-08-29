@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1585033551 source:d:\c_code\heap_methods\main.c
+	<stdio.h>
+	<stdlib.h>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1585547065 source:d:\c_code\multiheap\main.c
+	<stdio.h>
+	<stdlib.h>
+

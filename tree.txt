@@ -1,0 +1,155 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define NINF -999999
+struct node
+{
+ int key;
+ struct node *left;
+ struct node *right;
+ struct node *parent;
+ 
+};
+
+struct node* readtree(struct node* X,int k,int a[],int b[],int c[])
+{//k is the index of the node in consideration
+ //X is the parent node 
+ 
+ struct node* tree=(struct node*)malloc(sizeof(struct node));
+ tree->parent=X;
+ tree->key=a[k];
+ if(b[k]==0&&c[k]==0)	
+ {
+  tree->left=NULL;
+  tree->right=NULL;
+  return (tree);
+ }
+ if(b[k]==0)
+ { 
+  tree->left=NULL;
+ 
+ }
+ else
+ {
+  tree->left=readtree(tree,k+1,a,b,c);
+ }
+ if(c[k]==0)
+ {
+  tree->right=NULL;
+
+ }
+ else
+ {
+  tree->right=readtree(tree,k+b[k]+1,a,b,c);
+ }
+ return(tree);
+}
+
+void preorder(struct node* X)
+{
+ if(X==NULL)
+  return;
+ printf("%d ",X->key);
+ preorder(X->left);
+ preorder(X->right);
+ 
+}
+
+void inorder(struct node* X)
+{
+ if (X==NULL)
+  return;
+ inorder(X->left); 
+ printf("%d ",X->key);
+ inorder(X->right);
+}
+
+void prntree(struct node* X)
+{
+ printf("\nINORDER:\n ");
+ inorder(X);
+ printf("\nPREORDER:\n ");
+ preorder(X);
+ 
+}
+
+struct node* swapchild(struct node* X)
+{ 
+ struct node* temp = X->right;
+ X->right=X->left;
+ X->left=temp;
+ return(X);
+} 
+
+struct node* lrotate(struct node* X)
+{
+ struct node* temp1; struct node* temp2; struct node* temp3;
+ temp1=X->right;
+ temp2=X->left;
+ temp3=temp1->left;
+
+ temp1->left=X; 
+ X->right=temp3;	
+ temp1->parent=X->parent;
+ X->parent=temp1;
+ temp1->left=X;
+ temp3->parent=X;
+ 
+ return(temp1);
+}
+
+struct node* rrotate(struct node* X)
+{
+ struct node* temp1; struct node* temp2; struct node* temp3;
+ temp1=X->left;
+ temp2=X->right;
+ temp3=temp1->right;
+ 
+ temp1->right=X;
+ X->left=temp3;
+ temp1->parent=X->parent;
+ X->parent=temp1;
+ 
+ temp3->parent=X;
+ 
+ 
+ return(temp1);
+ 
+}
+
+struct node* makeskew(struct node* X)
+{
+ if(X==NULL)
+  return(X->parent);
+ while(X->left!=NULL)
+ {
+  X=rrotate(X);
+ }
+ (X->right);
+ return(X);
+}
+
+int main()
+{
+ int n;
+ scanf("%d",&n);
+ 
+ int a[n],b[n],c[n];
+ for(int i=0;i<n;i++)
+ { 
+  scanf("%d %d %d",&a[i],&b[i],&c[i]);
+ }//a--key, b--left, c--right
+ //dummy root
+ struct node* noded=(struct node*)malloc (sizeof(struct node));
+ noded->parent=NULL;
+ noded->key=NINF;
+ noded->left=NULL;
+ noded->right=readtree(noded,0,a,b,c);
+ prntree(noded->right);
+ //struct node* X=makeskew(noded->right);
+ //printf("Right Skewed");
+ 
+ //prntree(X);
+ 
+ 
+ 
+}

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1578742016 source:c:\users\legion\desktop\file\main.c
+	<stdio.h>
+	<stdlib.h>
+
