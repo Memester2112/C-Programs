@@ -12,7 +12,7 @@ double dist(double x, double y)
 
 int main()
 {
-	srand(time(NULL));//seeding
+	srand(time(NULL));//seeding with time = 0
 	double pi = M_PI;
 	
 	double x ;
